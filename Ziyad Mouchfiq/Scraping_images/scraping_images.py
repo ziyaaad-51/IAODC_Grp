@@ -10,7 +10,6 @@ import time
 
 options = Options()
 
-# Mode headless
 options.add_argument("--headless=new")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
@@ -29,8 +28,6 @@ try:
 
     print("Site ouvert :", driver.current_url)
 
-
-    # On ajoute 10 images dans la page
     driver.execute_script("""
         document.body.innerHTML = '';
 
@@ -47,7 +44,7 @@ try:
         }
     """)
 
-    # Attendre le chargement
+
     time.sleep(5)
 
 
@@ -72,11 +69,6 @@ try:
         
         if len(urls) == 10:
             break
-
-
-    # ==========================================
-    # 7. AFFICHER LES URLs
-    # ==========================================
 
     print("\nNombre d'images trouvées :", len(urls))
 
