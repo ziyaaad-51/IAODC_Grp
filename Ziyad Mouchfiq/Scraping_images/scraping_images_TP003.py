@@ -110,30 +110,17 @@ try:
 
             else:
 
-                print(
-                    "Erreur HTTP :",
-                    response.status_code
-                )
+                print("Erreur HTTP :", response.status_code)
 
         except Exception as e:
 
-            print(
-                "Erreur téléchargement :",
-                e
-            )
+            print("Erreur téléchargement :",e)
 
-    df = pd.DataFrame({
-        "URL": urls
-    })
+    df = pd.DataFrame({"URL": urls })
 
-    df.to_csv(
-        "images.csv",
-        index=False
-    )
+    df.to_csv("images.csv",index=False)
 
-    print(
-        "\nFichier images.csv créé !"
-    )
+    print("\nFichier images.csv créé !")
 
 
 finally:
