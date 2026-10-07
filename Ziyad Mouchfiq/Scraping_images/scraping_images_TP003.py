@@ -29,15 +29,10 @@ try:
 
     WebDriverWait(driver, 15).until(
         EC.presence_of_all_elements_located(
-            (By.TAG_NAME, "img")
-        )
-    )
+            (By.TAG_NAME, "img") ))
 
 
-    images = driver.find_elements(
-        By.TAG_NAME,
-        "img"
-    )
+    images = driver.find_elements(By.TAG_NAME,"img")
 
 
     urls = []
@@ -63,62 +58,38 @@ try:
         print(i, ":", url)
 
 
-    os.makedirs(
-        "images",
-        exist_ok=True
-    )
+    os.makedirs("images",exist_ok=True)
 
 
     for i, url in enumerate(urls, start=1):
 
         try:
 
-            response = requests.get(
-                url,
-                timeout=60
-            )
+            response = requests.get(url,timeout=60)
 
             if response.status_code == 200:
 
                 nom_fichier = f"images/image_{i}.jpg"
 
-                with open(
-                    nom_fichier,
-                    "wb"
-                ) as fichier:
+                with open(nom_fichier,"wb") as fichier:
 
                     fichier.write(
-                        response.content
-                    )
+                        response.content)
 
-                print(
-                    "Téléchargée :",
-                    nom_fichier
-                )
+                print("Téléchargée :",nom_fichier)
 
             else:
 
-                print(
-                    "Erreur HTTP :",
-                    response.status_code
-                )
+                print("Erreur HTTP :",response.status_code )
 
         except Exception as e:
 
-            print(
-                "Erreur téléchargement :",
-                e
-            )
+            print("Erreur téléchargement :",e )
 
 
-    df = pd.DataFrame({
-        "URL": urls
-    })
+    df = pd.DataFrame({"URL": urls})
 
-    df.to_csv(
-        "images.csv",
-        index=False
-    )
+    df.to_csv("images.csv",index=False)
 
     print("\nFichier images.csv créé !")
 
